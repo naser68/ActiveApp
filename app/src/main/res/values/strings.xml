@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ActiveApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_old">نسخه قدیمی</string>
+    <string name="title_new">نسخه جدید</string>
+    <string name="active_new">فعال سازی نسخه جدید</string>
+    <string name="active_old">فعال سازی نسخه قدیم</string>
+    <string name="active_code">کد فعال سازی</string>
+    <string name="active">ایجاد کد فعال سازی</string>
+    <string name="title_history">تاریخچه</string>
+    <string name="history_message">تاریخچه فعال سازی</string>
+</resources>
