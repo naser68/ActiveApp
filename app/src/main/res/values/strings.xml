@@ -12,4 +12,6 @@
     <string name="active">ایجاد کد فعال سازی</string>
     <string name="title_history">تاریخچه</string>
     <string name="history_message">تاریخچه فعال سازی</string>
+    <string name="title_send">ارسال</string>
+    <string name="send">ارسال</string>
 </resources>

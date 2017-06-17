@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mTextMessage.setTextColor(Color.BLUE);
                     isNew = false;
                     return true;
+                /*case R.id.navigation_send:
+                    Intent sintent = new Intent(MainActivity.this, SendActivity.class);
+                    startActivity(sintent);
+                    return true;*/
             }
             return false;
         }

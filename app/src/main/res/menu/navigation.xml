@@ -16,4 +16,8 @@
         android:icon="@android:drawable/ic_dialog_map"
         android:title="@string/title_old" />
 
+<!--    <item
+        android:id="@+id/navigation_send"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="@string/title_send" />-->
 </menu>
