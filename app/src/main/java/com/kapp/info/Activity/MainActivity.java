@@ -1,4 +1,4 @@
-package com.kapp.info;
+package com.kapp.info.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,8 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.kapp.info.Db.DBHelper;
 import com.kapp.info.activeapp.R;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout activePanel;
 
     private boolean isNew = true;
+
+    private DBHelper dbHelper;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -64,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dbHelper = new DBHelper(getApplicationContext());
+
         activePanel = (LinearLayout) findViewById(R.id.activePanel);
 
         mTextMessage = (TextView) findViewById(R.id.activeType);
@@ -90,14 +98,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnActive:
-
-                mActiveCode.setText("434343434");
+                if (etKeyCode.getText().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "لطفا کلید تبادل را وارد نمایید", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                String random = String.valueOf(new Random().nextLong());
+                mActiveCode.setText(random);
                 activePanel.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnCopy:
+                if (etName.getText().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "لطفا نام را وارد نمایید", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (etMobileNumber.getText().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "لطفا شماره موبایل را وارد نمایید", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                dbHelper.insertActiveCode(etName.getText().toString(), etMobileNumber.getText().toString(), etKeyCode.getText().toString(), mActiveCode.getText().toString());
 
                 break;
             case R.id.btnSend:
+                if (etName.getText().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "لطفا نام را وارد نمایید", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (etMobileNumber.getText().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "لطفا شماره موبایل را وارد نمایید", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                dbHelper.insertActiveCode(etName.getText().toString(), etMobileNumber.getText().toString(), etKeyCode.getText().toString(), mActiveCode.getText().toString());
 
                 break;
         }

@@ -8,7 +8,7 @@
     <string name="title_new">نسخه جدید</string>
     <string name="active_new">فعال سازی نسخه جدید</string>
     <string name="active_old">فعال سازی نسخه قدیم</string>
-    <string name="active_code">کد فعال سازی</string>
+    <string name="active_code">کلید تبادل</string>
     <string name="active">ایجاد کد فعال سازی</string>
     <string name="title_history">تاریخچه</string>
     <string name="history_message">تاریخچه فعال سازی</string>
