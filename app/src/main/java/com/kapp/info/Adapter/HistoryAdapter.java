@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kapp.info.Entity.ActiveCode;
@@ -24,7 +25,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView txtName, txtPhone, txtKeyCode , txtCode , txtDate;
-
+        public LinearLayout itemlayout;
         public MyViewHolder(View view) {
             super(view);
             txtName = (TextView) view.findViewById(R.id.txtName);

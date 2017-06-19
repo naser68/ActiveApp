@@ -17,6 +17,10 @@ import android.widget.Toast;
 import com.kapp.info.Db.DBHelper;
 import com.kapp.info.activeapp.R;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -106,8 +110,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(getApplicationContext(), "لطفا کلید تبادل را وارد نمایید", Toast.LENGTH_LONG).show();
                     return;
                 }
-                String random = String.valueOf(new Random().nextLong());
-                mActiveCode.setText(random);
+                String hash =  md5(etKeyCode.getText().toString());
+
+                String result = "";
+                if(isNew) {
+                    result = hash.substring(2,3) + hash.substring(10,11)  + hash.substring(7,8) + hash.substring(17,18) +
+                            hash.substring(20,21)+ hash.substring(15,16)  + hash.substring(23,24) + hash.substring(12,13) ;
+                }else{
+                    result = hash.substring(2, 3) + hash.substring(7, 8) + hash.substring(17, 18) +
+                            hash.substring(20, 21) + hash.substring(23, 24) + hash.substring(12, 13);
+                }
+                mActiveCode.setText(result);
                 activePanel.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnCopy:
@@ -119,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(getApplicationContext(), "لطفا شماره موبایل را وارد نمایید", Toast.LENGTH_LONG).show();
                     return;
                 }
+
 
                 dbHelper.insertActiveCode(etName.getText().toString(), etMobileNumber.getText().toString(), etKeyCode.getText().toString(), mActiveCode.getText().toString());
 
@@ -135,7 +149,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 dbHelper.insertActiveCode(etName.getText().toString(), etMobileNumber.getText().toString(), etKeyCode.getText().toString(), mActiveCode.getText().toString());
 
+                String shareBody = mActiveCode.getText().toString();
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "ارسال کد فعال سازی");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_using)));
+
                 break;
         }
+    }
+
+    public  String md5(final String s) {
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest
+                    .getInstance(MD5);
+            digest.update(URLEncoder.encode(s, "utf-8").getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

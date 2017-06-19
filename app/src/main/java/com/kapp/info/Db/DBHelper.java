@@ -106,6 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ActiveCode activeCode;
         while(res.isAfterLast() == false){
             activeCode = new ActiveCode(
+                    res.getInt(res.getColumnIndex(CONTACTS_COLUMN_ID)),
                     res.getString(res.getColumnIndex(CONTACTS_COLUMN_KEYCODE)),
                     res.getString(res.getColumnIndex(CONTACTS_COLUMN_ACTIVE_CODE)),
                     res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)),

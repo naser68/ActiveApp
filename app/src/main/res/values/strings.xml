@@ -14,4 +14,5 @@
     <string name="history_message">تاریخچه فعال سازی</string>
     <string name="title_send">ارسال</string>
     <string name="send">ارسال</string>
+    <string name="share_using">ارسال به وسیله</string>
 </resources>

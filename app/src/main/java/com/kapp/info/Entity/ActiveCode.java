@@ -6,6 +6,8 @@ package com.kapp.info.Entity;
 
 public class ActiveCode {
 
+
+    private int Id;
     private String KeyCode;
     private String ActiveCode;
     private String Name;
@@ -17,7 +19,8 @@ public class ActiveCode {
 
     }
 
-    public ActiveCode(String keyCode, String activeCode, String name, String mobileNumber , String createDate) {
+    public ActiveCode(int id , String keyCode, String activeCode, String name, String mobileNumber , String createDate) {
+        Id = id;
         KeyCode = keyCode;
         ActiveCode = activeCode;
         Name = name;
@@ -27,6 +30,13 @@ public class ActiveCode {
 
 
 
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
 
     public String getKeyCode() {
         return KeyCode;
